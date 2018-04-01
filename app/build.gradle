@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+try {
+  keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} catch (Exception ex) {
+  // do nothing for now. Potentially throw in something else later?
+}
 
 android {
   signingConfigs {
