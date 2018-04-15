@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.jmhossler.roastd.R;
 
@@ -60,11 +61,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     // Add button listeners
     Button logout = findViewById(R.id.logout);
-    logout.setOnClickListener(v -> mGoogleSignInClient.signOut()
-      .addOnCompleteListener(this, task -> {
-        setResult(RESULT_OK);
-        finish();
-      }));
+    logout.setOnClickListener(v -> signOut());
     // TODO: Implement apply manager activity
+  }
+
+  private void signOut() {
+    FirebaseAuth.getInstance().signOut();
+    mGoogleSignInClient.revokeAccess().addOnCompleteListener(this, task -> {
+      setResult(RESULT_OK);
+      finish();});
   }
 }
