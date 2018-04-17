@@ -28,11 +28,11 @@ public class LoginPresenter implements LoginContract.Presenter {
   @NonNull
   private final LoginContract.View mLoginView;
 
-  public LoginPresenter(@NonNull LoginContract.View loginView) {
+  public LoginPresenter(@NonNull LoginContract.View loginView, @NonNull FirebaseAuth firebaseAuth) {
     mLoginView = loginView;
     mLoginView.setPresenter(this);
 
-    mAuth = FirebaseAuth.getInstance();
+    mAuth = firebaseAuth;
   }
 
   @Override
