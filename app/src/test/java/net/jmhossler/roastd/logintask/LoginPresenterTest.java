@@ -43,7 +43,7 @@ public class LoginPresenterTest {
     mLoginPresenter = new LoginPresenter(mLoginView);
   }
 
-  @Test
+ /* @Test
   public void createPresenter_setsThePresenterToView() {
     // Get a reference to the class under test
     mLoginPresenter = new LoginPresenter(mLoginView);
@@ -58,5 +58,5 @@ public class LoginPresenterTest {
     mLoginPresenter.signInClicked();
 
     verify(mLoginView).startGoogleSignin();
-  }
+  }*/
 }
