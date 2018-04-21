@@ -12,12 +12,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import net.jmhossler.roastd.R;
+import net.jmhossler.roastd.data.bean.MockBeanRepository;
+import net.jmhossler.roastd.data.drink.MockDrinkRepository;
 import net.jmhossler.roastd.data.searchableItem.SearchableItem;
+import net.jmhossler.roastd.data.shop.MockShopRepository;
+import net.jmhossler.roastd.listfragment.SearchableItemListContract;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SearchableItemListFragment extends ListFragment {
+public class SearchableItemListFragment extends ListFragment implements SearchableItemListContract.View {
 
   private ArrayList<SearchableItem> items;
   private SearchableItemArrayAdapter adapter;
@@ -28,18 +32,23 @@ public class SearchableItemListFragment extends ListFragment {
   }
 
   @Override
+  public void setPresenter(SearchableItemListContract.Presenter presenter) {
+    mPresenter = presenter;
+  }
+
+  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.items = new ArrayList<>();
     this.adapter = new SearchableItemArrayAdapter(getContext(), items);
-    this.mPresenter = new SearchableItemListPresenter();
+    this.mPresenter = new SearchableItemListPresenter(this, MockBeanRepository.getInstance(), MockDrinkRepository.getInstance(), MockShopRepository.getInstance());
     setListAdapter(adapter);
   }
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    this.mPresenter = new SearchableItemListPresenter();
+    this.mPresenter = new SearchableItemListPresenter(this, MockBeanRepository.getInstance(), MockDrinkRepository.getInstance(), MockShopRepository.getInstance());
     this.items = mPresenter.getItems(new ArrayList<UUID>());
     this.adapter = new SearchableItemArrayAdapter(getContext(), items);
     setListAdapter(adapter);
@@ -47,7 +56,7 @@ public class SearchableItemListFragment extends ListFragment {
 
   public void setItems(ArrayList<UUID> items) {
     if(mPresenter == null) {
-      mPresenter = new SearchableItemListPresenter();
+      mPresenter = new SearchableItemListPresenter(this, MockBeanRepository.getInstance(), MockDrinkRepository.getInstance(), MockShopRepository.getInstance());
     }
     this.items = mPresenter.getItems(items);
     adapter.notifyDataSetChanged();

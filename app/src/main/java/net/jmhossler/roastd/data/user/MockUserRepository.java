@@ -24,24 +24,12 @@ public class MockUserRepository implements UserDataSource {
 
   @Override
   public void getUser(String userId, GetUserCallback callback) {
-    ArrayList<UUID> favorites = new ArrayList<UUID>();
-    favorites.add(UUID.fromString("111"));
-    favorites.add(UUID.fromString("222"));
-    favorites.add(UUID.fromString("333"));
-    ArrayList<UUID> shops = new ArrayList<UUID>();
-    callback.onUserLoaded(deepClone(new User(userId, "foobar@gmail.com",
-                                             "Foo Bar, Jr.", null, shops,
-                                             false, Calendar.getInstance().getTime(),
-                                             favorites)));
-    return;
-    /* commenting out because the purpose of a mock is to return data, not actually implement the logic.
     if (sTheUser != null && userId.equals(sTheUser.getUuid())) {
       // Using cloning to try to emulate repository behavior
       callback.onUserLoaded(deepClone(sTheUser));
     } else {
       callback.onDataNotAvailable();
     }
-    */
   }
 
   @Override
