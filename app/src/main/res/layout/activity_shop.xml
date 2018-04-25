@@ -10,7 +10,7 @@
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="I am shop"/>
+    android:id="@id/shop_name"/>
 
   <FrameLayout
     android:id="@+id/shop_fragment_container"
