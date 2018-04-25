@@ -32,6 +32,11 @@ public class ShopPresenter implements ShopContract.Presenter {
   @Override
   public void start() {
     mView.setPresenter(this);
+    setName();
+    setAddress();
+    setDescription();
+    setMapsUrl();
+    setConsumeables();
   }
 
   @Override
