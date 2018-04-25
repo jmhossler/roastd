@@ -1,5 +1,7 @@
 package net.jmhossler.roastd.shoptask;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -24,6 +26,12 @@ public class ShopActivity extends AppCompatActivity implements ShopContract.View
   private TextView mAddress;
   private TextView mMapsUrl;
 
+  public static Intent createIntent(String shopId, Context context) {
+    Intent intent = new Intent(context, ShopActivity.class);
+    intent.putExtra("SHOP_ID", shopId);
+    return intent;
+  }
+
   @Override
   public void setPresenter(ShopContract.Presenter shopPresenter) {
     mShopPresenter = shopPresenter;
@@ -35,13 +43,14 @@ public class ShopActivity extends AppCompatActivity implements ShopContract.View
     setContentView(R.layout.activity_shop);
     String shopId = getIntent().getStringExtra("SHOP_ID");
 
-    mName = (TextView) findViewById(R.id.shop_name);
+    mName = (TextView) findViewById(R.id.name);
     mDescription = (TextView) findViewById(R.id.description);
     mAddress = (TextView) findViewById(R.id.address);
     mMapsUrl = (TextView) findViewById(R.id.maps_url);
 
     ShopContract.Presenter presenter = new ShopPresenter(this, shopId, FirebaseRTUserRepository.getsInstance(),
       FirebaseRTShopRepository.getInstance(), FirebaseRTSearchableItemRepository.getInstance());
+
     presenter.setAddress();
     presenter.setName();
     presenter.setDescription();
