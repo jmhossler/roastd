@@ -41,7 +41,9 @@
     <activity android:name=".applicationtask.ApplicationActivity" />
     <activity android:name=".beantask.BeanActivity" />
     <activity android:name=".drinktask.DrinkActivity" />
-    <activity android:name=".shoptask.ShopActivity" />
+    <activity
+      android:name=".shoptask.ShopActivity"
+      android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".recommendationstask.RecommendationsActivity"
       android:label="@string/recommendations_title" />
