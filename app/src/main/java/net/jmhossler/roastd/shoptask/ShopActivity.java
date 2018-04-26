@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -13,13 +12,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+
 import net.jmhossler.roastd.R;
 import net.jmhossler.roastd.data.review.FirebaseRTReviewRepository;
 import net.jmhossler.roastd.data.searchableItem.FirebaseRTSearchableItemRepository;
 import net.jmhossler.roastd.data.searchableItem.SearchableItem;
 import net.jmhossler.roastd.data.shop.FirebaseRTShopRepository;
 import net.jmhossler.roastd.data.user.FirebaseRTUserRepository;
-import net.jmhossler.roastd.recommendationstask.RecommendationsActivity;
+import net.jmhossler.roastd.util.ActivityUtils;
 
 import java.util.List;
 
@@ -33,6 +33,8 @@ public class ShopActivity extends AppCompatActivity implements ShopContract.View
   private RelativeLayout mAddressBox;
   private RatingBar mRatingBar;
   private ImageView mImageView;
+
+  private static final int MY_LOCATION_REQUEST_CODE = 1;
 
   private static final String itemKey = "SHOP_ID";
 
@@ -94,7 +96,13 @@ public class ShopActivity extends AppCompatActivity implements ShopContract.View
   }
 
   @Override
-  public void createMapsLink(String url) {
+  public void createMapsLink(String address) {
+    final String url;
+    if (address.equals("")) {
+      url = ActivityUtils.getMapsLocationUrl("751 Campus Dr W, Tuscaloosa, AL 35404");
+    } else {
+      url = ActivityUtils.getMapsLocationUrl(address);
+    }
     mAddressBox.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))));
   }
 

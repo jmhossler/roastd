@@ -144,9 +144,9 @@ public class ShopPresenter implements ShopContract.Presenter {
   @Override
   public void setMapsUrl(SearchableItem item) {
     Shop shop = (Shop) item;
-    String googleMapsUrl = shop.getGoogleMapsUrl();
+    String address = shop.getAddress();
 
-    mView.createMapsLink(googleMapsUrl);
+    mView.createMapsLink(address);
   }
 
   @Override

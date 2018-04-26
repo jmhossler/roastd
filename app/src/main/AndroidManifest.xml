@@ -48,5 +48,6 @@
       android:name=".recommendationstask.RecommendationsActivity"
       android:label="@string/recommendations_title" />
   </application>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 </manifest>
