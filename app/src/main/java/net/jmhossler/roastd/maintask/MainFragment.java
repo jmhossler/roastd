@@ -103,7 +103,7 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     mNameLabel = root.findViewById(R.id.name_label);
     mPresenter.setFirstName();
-    
+
     mProfilePhoto = root.findViewById(R.id.profile_image);
     mPresenter.setCurrentPhotoURL();
 

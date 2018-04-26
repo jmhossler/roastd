@@ -21,12 +21,14 @@ public class MainPresenter implements MainContract.Presenter {
   private final MainContract.View mMainView;
   private FirebaseAuth mAuth;
   private UserDataSource mUserDataSource;
+  private Calendar mCalendar;
 
   public MainPresenter(MainContract.View mainView, FirebaseAuth auth,
-                       UserDataSource userDataSource) {
+                       UserDataSource userDataSource, Calendar calendar) {
     mMainView = mainView;
     mUserDataSource = userDataSource;
     mAuth = auth;
+    mCalendar = calendar;
     mMainView.setPresenter(this);
   }
 
@@ -103,7 +105,7 @@ public class MainPresenter implements MainContract.Presenter {
 
   @Override
   public void setGreetingLabel() {
-    int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    int hour = mCalendar.get(Calendar.HOUR_OF_DAY);
     String greeting = mMainView.getMorningGreeting();
 
     if (hour > 17) {

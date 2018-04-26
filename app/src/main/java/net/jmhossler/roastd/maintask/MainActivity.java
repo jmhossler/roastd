@@ -9,6 +9,8 @@ import net.jmhossler.roastd.R;
 import net.jmhossler.roastd.data.user.FirebaseRTUserRepository;
 import net.jmhossler.roastd.util.ActivityUtils;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
   private MainPresenter mMainPresenter;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    mMainPresenter = new MainPresenter(mainFragment, firebaseAuth, FirebaseRTUserRepository.getsInstance());
+    mMainPresenter = new MainPresenter(mainFragment, firebaseAuth,
+      FirebaseRTUserRepository.getsInstance(), Calendar.getInstance());
   }
 }
