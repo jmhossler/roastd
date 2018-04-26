@@ -34,8 +34,6 @@ public class ShopActivity extends AppCompatActivity implements ShopContract.View
   private RatingBar mRatingBar;
   private ImageView mImageView;
 
-  private static final int MY_LOCATION_REQUEST_CODE = 1;
-
   private static final String itemKey = "SHOP_ID";
 
   public static Intent createIntent(String shopId, Context context) {
