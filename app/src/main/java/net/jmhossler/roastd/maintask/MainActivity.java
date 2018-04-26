@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 
 import net.jmhossler.roastd.R;
+import net.jmhossler.roastd.data.user.FirebaseRTUserRepository;
 import net.jmhossler.roastd.util.ActivityUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    mMainPresenter = new MainPresenter(mainFragment, firebaseAuth);
+    mMainPresenter = new MainPresenter(mainFragment, firebaseAuth, FirebaseRTUserRepository.getsInstance());
   }
 }
